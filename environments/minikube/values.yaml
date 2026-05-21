@@ -1,0 +1,7 @@
+seaweedfs:
+  s3Host: seaweedfs-s3.localhost
+  filerHost: seaweedfs-filer.localhost
+  volumeSize: 10Gi
+  filerSize: 5Gi
+  s3Buckets:
+    - default-bucket

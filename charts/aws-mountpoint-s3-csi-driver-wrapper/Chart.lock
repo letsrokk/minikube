@@ -1,0 +1,6 @@
+dependencies:
+- name: aws-mountpoint-s3-csi-driver
+  repository: https://awslabs.github.io/mountpoint-s3-csi-driver
+  version: 2.5.0
+digest: sha256:fb037e786c8a97d9f50638687ac0410181dae5dbbb23b87281f88a708fab6e65
+generated: "2026-04-18T18:44:38.007654604+02:00"

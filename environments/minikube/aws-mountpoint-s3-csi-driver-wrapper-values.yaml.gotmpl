@@ -1,0 +1,11 @@
+secretName: seaweedfs-s3-secret
+accessKeyId: {{ requiredEnv "SEAWEEDFS_S3_ACCESS_KEY" | quote }}
+secretAccessKey: {{ requiredEnv "SEAWEEDFS_S3_SECRET_KEY" | quote }}
+
+storageClass:
+  enabled: true
+  name: seaweedfs-s3
+
+aws-mountpoint-s3-csi-driver:
+  awsAccessSecret:
+    name: seaweedfs-s3-secret

@@ -1,0 +1,12 @@
+secretName: seaweedfs-s3-secret
+accessKeyId: ""
+secretAccessKey: ""
+
+storageClass:
+  enabled: true
+  name: seaweedfs-s3
+  provisioner: s3.csi.aws.com
+
+aws-mountpoint-s3-csi-driver:
+  awsAccessSecret:
+    name: seaweedfs-s3-secret

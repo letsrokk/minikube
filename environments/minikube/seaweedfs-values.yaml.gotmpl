@@ -1,0 +1,86 @@
+global:
+  seaweedfs:
+    loggingLevel: 1
+
+master:
+  replicas: 1
+  data:
+    type: emptyDir
+  logs:
+    type: emptyDir
+
+volume:
+  replicas: 1
+  dataDirs:
+    - name: data1
+      type: persistentVolumeClaim
+      storageClass: ""
+      size: {{ .Values.seaweedfs.volumeSize | quote }}
+      maxVolumes: 0
+  logs:
+    type: emptyDir
+  ingress:
+    enabled: false
+  resources:
+    requests:
+      cpu: 100m
+      memory: 256Mi
+    limits:
+      cpu: 500m
+      memory: 512Mi
+
+filer:
+  replicas: 1
+  data:
+    type: persistentVolumeClaim
+    storageClass: ""
+    size: {{ .Values.seaweedfs.filerSize | quote }}
+  logs:
+    type: emptyDir
+  ingress:
+    enabled: true
+    className: nginx
+    host: {{ .Values.seaweedfs.filerHost | quote }}
+    path: /
+    pathType: Prefix
+    annotations: {}
+  resources:
+    requests:
+      cpu: 100m
+      memory: 256Mi
+    limits:
+      cpu: 500m
+      memory: 512Mi
+
+s3:
+  enabled: true
+  replicas: 1
+  enableAuth: true
+  createBuckets:
+{{ range .Values.seaweedfs.s3Buckets }}
+    - name: {{ . | quote }}
+{{- end }}
+  credentials:
+    admin:
+      accessKey: {{ requiredEnv "SEAWEEDFS_S3_ACCESS_KEY" | quote }}
+      secretKey: {{ requiredEnv "SEAWEEDFS_S3_SECRET_KEY" | quote }}
+  logs:
+    type: emptyDir
+  ingress:
+    enabled: true
+    className: nginx
+    host: {{ .Values.seaweedfs.s3Host | quote }}
+    path: /
+    pathType: Prefix
+  service:
+    type: ClusterIP
+  resources:
+    requests:
+      cpu: 100m
+      memory: 256Mi
+    limits:
+      cpu: 500m
+      memory: 512Mi
+
+allInOne:
+  enabled: false

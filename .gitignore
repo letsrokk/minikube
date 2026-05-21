@@ -1,0 +1,23 @@
+# Local secrets
+.env
+.env.*
+!.env.example
+
+# Local Helm state and downloaded chart archives
+.helm/
+charts/**/charts/*.tgz
+
+# Local assistant/editor state
+.codex
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS, logs, and temporary files
+.DS_Store
+Thumbs.db
+*.log
+*.tmp
+tmp/
+temp/

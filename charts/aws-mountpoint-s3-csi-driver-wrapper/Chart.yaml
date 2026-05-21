@@ -1,0 +1,10 @@
+apiVersion: v2
+name: aws-mountpoint-s3-csi-driver-wrapper
+description: Wrapper chart for the Mountpoint S3 CSI driver plus its driver-level Secret.
+type: application
+version: 0.1.0
+appVersion: "2.5.0"
+dependencies:
+  - name: aws-mountpoint-s3-csi-driver
+    version: 2.5.0
+    repository: https://awslabs.github.io/mountpoint-s3-csi-driver
