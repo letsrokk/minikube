@@ -33,6 +33,7 @@ Install `helmfile` from the official Helmfile release channel for your OS if it 
 The upstream Mountpoint S3 CSI chart archive is not committed. Build the wrapper chart dependency after cloning:
 
 ```bash
+helm repo add aws-mountpoint-s3-csi-driver https://awslabs.github.io/mountpoint-s3-csi-driver
 helm dependency build charts/aws-mountpoint-s3-csi-driver-wrapper
 ```
 
