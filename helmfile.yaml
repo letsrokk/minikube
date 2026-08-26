@@ -1,6 +1,6 @@
 repositories:
-  - name: ingress-nginx
-    url: https://kubernetes.github.io/ingress-nginx
+  - name: traefik
+    url: https://traefik.github.io/charts
   - name: seaweedfs
     url: https://seaweedfs.github.io/seaweedfs/helm
   - name: aws-mountpoint-s3-csi-driver
@@ -21,17 +21,18 @@ environments:
       - environments/minikube/values.yaml
 ---
 releases:
-  - name: ingress-nginx
-    namespace: ingress-nginx
-    chart: ingress-nginx/ingress-nginx
-    version: 4.14.1
+  - name: traefik
+    namespace: traefik
+    chart: traefik/traefik
+    version: 41.2.0
+    disableValidationOnInstall: true
     values:
-      - environments/minikube/ingress-nginx-values.yaml
+      - environments/minikube/traefik-values.yaml.gotmpl
 
   - name: seaweedfs
     namespace: seaweedfs
     needs:
-      - ingress-nginx/ingress-nginx
+      - traefik/traefik
     chart: seaweedfs/seaweedfs
     version: 4.20.0
     values:

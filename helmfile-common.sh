@@ -31,4 +31,14 @@ if [[ -f "$env_file" ]]; then
   set +a
 fi
 
-exec helmfile -f "$script_dir/helmfile.yaml" -e "$environment_name" "$command_name"
+helmfile_args=(
+  -f "$script_dir/helmfile.yaml"
+  -e "$environment_name"
+  "$command_name"
+)
+
+if [[ "$command_name" == "diff" ]]; then
+  helmfile_args+=(--diff-args=--disable-validation)
+fi
+
+exec helmfile "${helmfile_args[@]}"

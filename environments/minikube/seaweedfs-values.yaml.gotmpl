@@ -39,7 +39,7 @@ filer:
     type: emptyDir
   ingress:
     enabled: true
-    className: nginx
+    className: traefik
     host: {{ .Values.seaweedfs.filerHost | quote }}
     path: /
     pathType: Prefix
@@ -68,7 +68,7 @@ s3:
     type: emptyDir
   ingress:
     enabled: true
-    className: nginx
+    className: traefik
     host: {{ .Values.seaweedfs.s3Host | quote }}
     path: /
     pathType: Prefix

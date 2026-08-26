@@ -7,6 +7,9 @@
 .helm/
 charts/**/charts/*.tgz
 
+# Local development CA and server private keys
+.certs/
+
 # Local assistant/editor state
 .codex
 .idea/
