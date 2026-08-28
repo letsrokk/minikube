@@ -46,7 +46,7 @@ helm dependency build charts/aws-mountpoint-s3-csi-driver-wrapper
 Start Minikube if needed:
 
 ```bash
-minikube start --kubernetes-version=1.35.4 --cpus=4 --memory=16g
+minikube start --kubernetes-version=1.36.4 --cpus=8 --memory=12g --cni=calico
 ```
 
 Confirm the cluster context:
